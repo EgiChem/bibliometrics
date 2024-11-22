@@ -15,7 +15,14 @@ pybliometrics.scopus.init()
 
 
 def get_author_docs(author_id: str, save_csv=True):
+    """
+    Get a list of document objects for a given author_id.
+    """
+    # Get author
     au = AuthorRetrieval(author_id)
+    print(f"Retrieving documents for {au.initials} {au.surname}...")
+
+    # Get author documents
     docs = au.get_documents()
 
     doc_list = []
@@ -61,6 +68,7 @@ def create_pub_list_tex(
         'publications': publications
     }
     rendered_tex = template.render(context)
+    print(rendered_tex)
 
     # Save the rendered LaTeX content to a file
     outfile = root_path / 'outputs' / 'pub-list.tex'
